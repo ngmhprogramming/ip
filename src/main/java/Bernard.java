@@ -28,7 +28,7 @@ public class Bernard {
         return output;
     }
 
-    private static void addTask(String[] taskArgs) {
+    private static void addTask(String[] taskArgs) throws BernardException{
         String[] parsedArgs;
         if (taskArgs[0].equals("todo")) {
             parsedArgs = extractTaskArgs(taskArgs, new String[]{});
@@ -36,22 +36,30 @@ public class Bernard {
         } else if (taskArgs[0].equals("deadline")) {
             parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/by" });
             tasks[lastTask] = Task.of(Task.TaskType.DEADLINE, parsedArgs);
-        } else {
+        } else if (taskArgs[0].equals("event")){
             parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/from", "/to" });
             tasks[lastTask] = Task.of(Task.TaskType.EVENT, parsedArgs);
+        } else {
+            throw new BernardException("Not sure what you mean...");
         }
         lastTask++;
         System.out.println("> Added task: ");
         System.out.println(tasks[lastTask - 1]);
     }
 
-    private static void markTask(int index) {
+    private static void markTask(int index) throws BernardException {
+        if (index >= lastTask) {
+            throw new BernardException("Task index out of range!");
+        }
         tasks[index].updateDoneStatus(true);
         System.out.println("I've marked the task as done!");
         System.out.println(tasks[index]);
     }
 
-    private static void unmarkTask(int index) {
+    private static void unmarkTask(int index) throws BernardException {
+        if (index >= lastTask) {
+            throw new BernardException("Task index out of range!");
+        }
         tasks[index].updateDoneStatus(false);
         System.out.println("I've marked the task as undone!");
         System.out.println(tasks[index]);
@@ -71,6 +79,7 @@ public class Bernard {
                 "| |_) |  __/ |  | | | | (_| | | | (_| |\n" +
                 "|____/ \\___|_|  |_| |_|\\__,_|_|  \\__,_|";
         System.out.println(logo);
+
         System.out.println("Hello! I'm Bernard, your helpful companion!");
         System.out.println("How can I help you today?");
 
@@ -78,19 +87,37 @@ public class Bernard {
         while (!ended) {
             String command = getUserInput();
             String[] commandArgs = command.split(" ");
-            if (commandArgs[0].equals("bye")) {
-                ended = true;
-                break;
-            } else if (commandArgs[0].equals("list")) {
-                listTasks();
-            } else if (commandArgs[0].equals("mark") && commandArgs.length > 1) {
-                int index = Integer.parseInt(commandArgs[1]) - 1;
-                markTask(index);
-            } else if (commandArgs[0].equals("unmark") && commandArgs.length > 1) {
-                int index = Integer.parseInt(commandArgs[1]) - 1;
-                unmarkTask(index);
-            } else {
-                addTask(commandArgs);
+            try {
+                if (commandArgs[0].equals("bye")) {
+                    ended = true;
+                    break;
+                } else if (commandArgs[0].equals("list")) {
+                    listTasks();
+                } else if (commandArgs[0].equals("mark")) {
+                    if (commandArgs.length == 1) {
+                        throw new BernardException("No task specified!");
+                    }
+                    try {
+                        int index = Integer.parseInt(commandArgs[1]) - 1;
+                        markTask(index);
+                    } catch (NumberFormatException exception) {
+                        throw new BernardException("Invalid task index!");
+                    }
+                } else if (commandArgs[0].equals("unmark")) {
+                    if (commandArgs.length == 1) {
+                        throw new BernardException("No task specified!");
+                    }
+                    try {
+                        int index = Integer.parseInt(commandArgs[1]) - 1;
+                        unmarkTask(index);
+                    } catch (NumberFormatException exception) {
+                        throw new BernardException("Invalid task index!");
+                    }
+                } else {
+                    addTask(commandArgs);
+                }
+            } catch (BernardException exception) {
+                System.out.println("> ERROR! " + exception.getMessage());
             }
         }
         System.out.println("Goodbye! See you again!");

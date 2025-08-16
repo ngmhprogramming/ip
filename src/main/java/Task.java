@@ -8,12 +8,15 @@ public abstract class Task {
         EVENT
     }
 
-    public Task(String description) {
+    public Task(String description) throws BernardException {
+        if (description.equals("")) {
+            throw new BernardException("Empty description!");
+        }
         this.description = description;
         this.isDone = false;
     }
 
-    public static Task of(TaskType taskType, String[] taskArgs) {
+    public static Task of(TaskType taskType, String[] taskArgs) throws BernardException {
         if (taskType == TaskType.TODO) {
             return new Todo(taskArgs[0]);
         } else if (taskType == TaskType.DEADLINE) {
@@ -21,7 +24,7 @@ public abstract class Task {
         } else if (taskType == TaskType.EVENT) {
             return new Event(taskArgs[0], taskArgs[1], taskArgs[2]);
         }
-        return null;
+        throw new BernardException("Invalid task type!");
     }
 
     public void updateDoneStatus(boolean value) {
