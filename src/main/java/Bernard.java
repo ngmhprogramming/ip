@@ -9,10 +9,40 @@ public class Bernard {
         return sc.nextLine();
     }
 
-    private static void addTask(String task) {
-        tasks[lastTask] = new Task(task);
+    private static String[] extractTaskArgs(String[] taskArgs, String[] delimiters) {
+        String[] output = new String[delimiters.length + 1];
+        for (int i = 0; i < output.length; i++) {
+            output[i] = "";
+        }
+        int index = 0;
+        for (int i = 1; i < taskArgs.length; i++) {
+            if (index < delimiters.length && taskArgs[i].equals(delimiters[index])) {
+                index++;
+                continue;
+            }
+            if (output[index] != "") {
+                output[index] += " ";
+            }
+            output[index] += taskArgs[i] + "";
+        }
+        return output;
+    }
+
+    private static void addTask(String[] taskArgs) {
+        String[] parsedArgs;
+        if (taskArgs[0].equals("todo")) {
+            parsedArgs = extractTaskArgs(taskArgs, new String[]{});
+            tasks[lastTask] = Task.of(Task.TaskType.TODO, parsedArgs);
+        } else if (taskArgs[0].equals("deadline")) {
+            parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/by" });
+            tasks[lastTask] = Task.of(Task.TaskType.DEADLINE, parsedArgs);
+        } else {
+            parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/from", "/to" });
+            tasks[lastTask] = Task.of(Task.TaskType.EVENT, parsedArgs);
+        }
         lastTask++;
-        System.out.println("> Added task: " + task);
+        System.out.println("> Added task: ");
+        System.out.println(tasks[lastTask - 1]);
     }
 
     private static void markTask(int index) {
@@ -60,7 +90,7 @@ public class Bernard {
                 int index = Integer.parseInt(commandArgs[1]) - 1;
                 unmarkTask(index);
             } else {
-                addTask(command);
+                addTask(commandArgs);
             }
         }
         System.out.println("Goodbye! See you again!");
