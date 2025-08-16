@@ -1,7 +1,35 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+ ____                                _ 
+| __ )  ___ _ __ _ __   __ _ _ __ __| |
+|  _ \ / _ \ '__| '_ \ / _` | '__/ _` |
+| |_) |  __/ |  | | | | (_| | | | (_| |
+|____/ \___|_|  |_| |_|\__,_|_|  \__,_|
+Hello! I'm Bernard, your helpful companion!
+How can I help you today?
+> Added task: 
+[T][ ] borrow book
+> Task list:
+1. [T][ ] borrow book
+> Added task: 
+[D][ ] return book (by: Sunday)
+> Task list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+> Added task: 
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+> Task list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+I've marked the task as done!
+[D][X] return book (by: Sunday)
+> Task list:
+1. [T][ ] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+I've marked the task as undone!
+[D][ ] return book (by: Sunday)
+> Task list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+Goodbye! See you again!
