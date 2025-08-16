@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Bernard {
     private static Scanner sc = new Scanner(System.in);
-    private static String[] tasks = new String[100];
+    private static Task[] tasks = new Task[100];
     private static int lastTask = 0;
 
     private static String getUserInput() {
@@ -10,11 +10,25 @@ public class Bernard {
     }
 
     private static void addTask(String task) {
-        tasks[lastTask] = task;
+        tasks[lastTask] = new Task(task);
         lastTask++;
+        System.out.println("> Added task: " + task);
+    }
+
+    private static void markTask(int index) {
+        tasks[index].updateDoneStatus(true);
+        System.out.println("I've marked the task as done!");
+        System.out.println(tasks[index]);
+    }
+
+    private static void unmarkTask(int index) {
+        tasks[index].updateDoneStatus(false);
+        System.out.println("I've marked the task as undone!");
+        System.out.println(tasks[index]);
     }
 
     private static void listTasks() {
+        System.out.println("> Task list:");
         for (int i = 0; i < lastTask; i++) {
             System.out.println((i + 1) + ". " + tasks[i]);
         }
@@ -30,18 +44,22 @@ public class Bernard {
         System.out.println("Hello! I'm Bernard, your helpful companion!");
         System.out.println("How can I help you today?");
 
-        String command = "";
         boolean ended = false;
         while (!ended) {
-            command = getUserInput();
-            if (command.equals("bye")) {
+            String command = getUserInput();
+            String[] commandArgs = command.split(" ");
+            if (commandArgs[0].equals("bye")) {
                 ended = true;
                 break;
-            } else if (command.equals("list")) {
-                System.out.println("> Task list:");
+            } else if (commandArgs[0].equals("list")) {
                 listTasks();
+            } else if (commandArgs[0].equals("mark") && commandArgs.length > 1) {
+                int index = Integer.parseInt(commandArgs[1]) - 1;
+                markTask(index);
+            } else if (commandArgs[0].equals("unmark") && commandArgs.length > 1) {
+                int index = Integer.parseInt(commandArgs[1]) - 1;
+                unmarkTask(index);
             } else {
-                System.out.println("> Added task: " + command);
                 addTask(command);
             }
         }
