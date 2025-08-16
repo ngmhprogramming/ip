@@ -2,9 +2,22 @@ import java.util.Scanner;
 
 public class Bernard {
     private static Scanner sc = new Scanner(System.in);
+    private static String[] tasks = new String[100];
+    private static int lastTask = 0;
 
     private static String getUserInput() {
         return sc.nextLine();
+    }
+
+    private static void addTask(String task) {
+        tasks[lastTask] = task;
+        lastTask++;
+    }
+
+    private static void listTasks() {
+        for (int i = 0; i < lastTask; i++) {
+            System.out.println((i + 1) + ". " + tasks[i]);
+        }
     }
 
     public static void main(String[] args) {
@@ -21,8 +34,16 @@ public class Bernard {
         boolean ended = false;
         while (!ended) {
             command = getUserInput();
-            if (command.equals("bye")) ended = true;
-            System.out.println("> " + command);
+            if (command.equals("bye")) {
+                ended = true;
+                break;
+            } else if (command.equals("list")) {
+                System.out.println("> Task list:");
+                listTasks();
+            } else {
+                System.out.println("> Added task: " + command);
+                addTask(command);
+            }
         }
         System.out.println("Goodbye! See you again!");
     }
