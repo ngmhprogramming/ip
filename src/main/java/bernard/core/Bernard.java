@@ -2,6 +2,9 @@ package bernard.core;
 
 import bernard.exceptions.BernardException;
 
+/**
+ * The Bernard Personal Assistant
+ */
 public class Bernard {
     private static final String STORAGE_PATH = "./data/bernard.txt";
 
@@ -10,6 +13,11 @@ public class Bernard {
     private static Parser parser;
     private static Storage storage;
 
+    /**
+     * Runs the Bernard Personal Assistant
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         // print Bernard title
         ui.title();
@@ -17,7 +25,7 @@ public class Bernard {
         // try to load storage file and parse tasks
         try {
             storage = new Storage(STORAGE_PATH);
-            taskList = new TaskList(storage.load());
+            taskList = new TaskList(storage.load(), ui);
         } catch (BernardException e) {
             ui.outputLine("> ERROR! " + e.getMessage());
             ui.outputLine("Shutting down...");

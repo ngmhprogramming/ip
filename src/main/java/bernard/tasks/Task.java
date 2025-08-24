@@ -2,16 +2,28 @@ package bernard.tasks;
 
 import bernard.exceptions.BernardException;
 
+/**
+ * Template for a Task class
+ */
 public abstract class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * Types of tasks available
+     */
     public static enum TaskType {
         TODO,
         DEADLINE,
         EVENT
     }
 
+    /**
+     * Constructs a default task
+     *
+     * @param description Description of task
+     * @throws BernardException If description of task is left empty
+     */
     public Task(String description) throws BernardException {
         if (description.equals("")) {
             throw new BernardException("Empty description!");
@@ -20,6 +32,14 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Factory method to construct a specified task type from task string arguments
+     *
+     * @param taskType Type of task to be used from enum
+     * @param taskArgs String arguments to create task from
+     * @return The constructed task
+     * @throws BernardException If task type specified was invalid
+     */
     public static Task of(TaskType taskType, String[] taskArgs) throws BernardException {
         if (taskType == TaskType.TODO) {
             return new Todo(taskArgs[0]);
@@ -31,18 +51,38 @@ public abstract class Task {
         throw new BernardException("Invalid task type!");
     }
 
+    /**
+     * Update the done status of a task
+     *
+     * @param value New boolean value for the done status
+     */
     public void updateDoneStatus(boolean value) {
         this.isDone = value;
     }
 
+    /**
+     * Retrieves a symbol representing the done status of the task
+     *
+     * @return A character with the appropriate symbol
+     */
     private String getDoneSymbol() {
         return (this.isDone ? "X" : " ");
     }
 
+    /**
+     * Serialise a task for file output
+     *
+     * @return The serialised form of the task
+     */
     public String serialise() {
         return getDoneSymbol() + "|" + this.description;
     }
 
+    /**
+     * Converts a task to a string representation
+     *
+     * @return The string representation of the task
+     */
     @Override
     public String toString() {
         return "["+ this.getDoneSymbol() +"] "+ this.description;
