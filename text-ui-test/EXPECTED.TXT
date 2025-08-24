@@ -38,4 +38,6 @@ I've deleted the task!
 > Task list:
 1. [T][ ] borrow book
 2. [E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
+> Matching Tasks:
+1. [T][ ] borrow book
 Goodbye! See you again!

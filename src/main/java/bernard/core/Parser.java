@@ -13,7 +13,11 @@ public class Parser {
 
     // parse user command and execute accordingly
     public boolean handleCommand(String command) {
-        String[] commandArgs = command.split(" ");
+        // skip empty command
+        if (command.isEmpty()) {
+            return false;
+        }
+        String[] commandArgs = command.split("\\s+");
         try {
             if (commandArgs[0].equals("bye")) {
                 return true;
@@ -53,7 +57,8 @@ public class Parser {
                 if (commandArgs.length == 1) {
                     throw new BernardException("No keyword specified!");
                 }
-                taskList.listMatchingTasks(commandArgs[1]);
+                String keyword = String.join(" ", java.util.Arrays.copyOfRange(commandArgs, 1, commandArgs.length)).trim();
+                taskList.listMatchingTasks(keyword);
             } else {
                 taskList.addTask(commandArgs);
             }

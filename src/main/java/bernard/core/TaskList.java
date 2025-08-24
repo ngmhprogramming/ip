@@ -3,6 +3,7 @@ package bernard.core;
 import bernard.exceptions.BernardException;
 import bernard.tasks.Task;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TaskList {
@@ -17,6 +18,9 @@ public class TaskList {
     }
 
     private String[] extractTaskArgs(String[] taskArgs, String[] delimiters) {
+        if (delimiters.length == 0) {
+            return new String[]{ String.join(" ", Arrays.copyOfRange(taskArgs, 1, taskArgs.length)) };
+        }
         String[] output = new String[delimiters.length + 1];
         for (int i = 0; i < output.length; i++) {
             output[i] = "";
@@ -27,7 +31,7 @@ public class TaskList {
                 index++;
                 continue;
             }
-            if (output[index] != "") {
+            if (!output[index].equals("")) {
                 output[index] += " ";
             }
             output[index] += taskArgs[i] + "";
