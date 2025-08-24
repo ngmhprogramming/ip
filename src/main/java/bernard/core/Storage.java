@@ -12,14 +12,28 @@ import java.util.List;
 import java.io.File;
 import java.util.Scanner;
 
+/**
+ * Handles file storage for task list
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Construct a Storage manager
+     *
+     * @param filePath File to use for saving task list
+     * @throws BernardException If failure occurs when accessing file
+     */
     public Storage(String filePath) throws BernardException {
         this.filePath = filePath;
         checkFileExists();
     }
 
+    /**
+     * Checks if a file exists and creates it if it does not
+     *
+     * @throws BernardException If unable to create and use specified storage file
+     */
     private void checkFileExists() throws BernardException {
         try {
             File file = new File(filePath);
@@ -35,6 +49,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads task list from specified file
+     *
+     * @return List of tasks found in specified file
+     * @throws BernardException If storage file does not exist
+     */
     public List<Task> load() throws BernardException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -52,6 +72,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves task list to local file
+     *
+     * @param tasks List of tasks to save
+     * @throws BernardException If storage file does not exist
+     */
     public void save(List<Task> tasks) throws BernardException {
         FileWriter writer = null;
         try {
@@ -70,6 +96,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Parse a line found in the storage file
+     *
+     * @param line Line read from storage file
+     * @return Task constructed from line
+     * @throws BernardException If line is an invalid task
+     */
     private Task parseLine(String line) throws BernardException {
         String[] parts = line.split("\\|");
         Task.TaskType type;
