@@ -4,7 +4,7 @@ import bernard.exceptions.BernardException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskTest {
+public class TaskTest {
 
     // Minimal concrete subclass for testing
     static class TestTask extends Task {

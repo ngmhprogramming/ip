@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeadlineTest {
+public class DeadlineTest {
 
     @Test
     void constructor_ISOFormat_correctToString() throws BernardException {

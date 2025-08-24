@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EventTest {
+public class EventTest {
 
     @Test
     void constructor_ISOFormat_correctToString() throws BernardException {
