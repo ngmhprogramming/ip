@@ -1,10 +1,10 @@
 package bernard.tasks;
 
-import bernard.exceptions.BernardException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import bernard.exceptions.BernardException;
 
 public class Event extends Task {
     /**

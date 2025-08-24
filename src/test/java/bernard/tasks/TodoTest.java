@@ -1,10 +1,10 @@
 package bernard.tasks;
 
-import bernard.exceptions.BernardException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import bernard.exceptions.BernardException;
 
 public class TodoTest {
 
@@ -23,15 +23,15 @@ public class TodoTest {
     @Test
     void markTask_updatesToDone() throws BernardException {
         Todo todo = new Todo("Read book");
-        todo.updateDoneStatus(true);
+        todo.setDoneStatus(true);
         assertEquals("[T][X] Read book", todo.toString());
     }
 
     @Test
     void unmarkTask_updatesToUndone() throws BernardException {
         Todo todo = new Todo("Read book");
-        todo.updateDoneStatus(true);
-        todo.updateDoneStatus(false);
+        todo.setDoneStatus(true);
+        todo.setDoneStatus(false);
         assertEquals("[T][ ] Read book", todo.toString());
     }
 }

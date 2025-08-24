@@ -1,11 +1,12 @@
 package bernard.tasks;
 
-import bernard.exceptions.BernardException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import java.time.format.DateTimeFormatter;
-
-import static org.junit.jupiter.api.Assertions.*;
+import bernard.exceptions.BernardException;
 
 public class DeadlineTest {
 
@@ -32,7 +33,7 @@ public class DeadlineTest {
     void updateDoneStatus_serialise_reflectsStatus() throws BernardException {
         Deadline d = new Deadline("Finish homework", "2019-12-02T18:00");
         assertEquals("D| |Finish homework|2019-12-02T18:00", d.serialise()); // initially not done
-        d.updateDoneStatus(true);
+        d.setDoneStatus(true);
         assertEquals("D|X|Finish homework|2019-12-02T18:00", d.serialise());
     }
 }

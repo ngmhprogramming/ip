@@ -5,7 +5,7 @@ import bernard.exceptions.BernardException;
 /**
  * The Bernard Personal Assistant
  */
-public class Bernard {
+class Bernard {
     private static final String STORAGE_PATH = "./data/bernard.txt";
 
     private static TaskList taskList;
@@ -36,9 +36,9 @@ public class Bernard {
 
         // parse user commands
         parser = new Parser(taskList, ui);
-        boolean ended = false;
-        while (!ended) {
-            ended = parser.handleCommand(ui.getUserInput());
+        boolean isDone = false;
+        while (!isDone) {
+            isDone = parser.handleCommand(ui.getUserInput());
         }
 
         // store edited tasklist

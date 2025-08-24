@@ -56,7 +56,7 @@ public abstract class Task {
      *
      * @param value New boolean value for the done status
      */
-    public void updateDoneStatus(boolean value) {
+    public void setDoneStatus(boolean value) {
         this.isDone = value;
     }
 
@@ -66,7 +66,7 @@ public abstract class Task {
      * @return A character with the appropriate symbol
      */
     private String getDoneSymbol() {
-        return (this.isDone ? "X" : " ");
+        return this.isDone ? "X" : " ";
     }
 
     /**

@@ -1,21 +1,23 @@
 package bernard.core;
 
-import bernard.exceptions.BernardException;
-import bernard.tasks.Deadline;
-import bernard.tasks.Task;
-import bernard.tasks.Todo;
-import bernard.tasks.Event;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import bernard.exceptions.BernardException;
+import bernard.tasks.Deadline;
+import bernard.tasks.Event;
+import bernard.tasks.Task;
+import bernard.tasks.Todo;
 
 public class StorageTest {
 

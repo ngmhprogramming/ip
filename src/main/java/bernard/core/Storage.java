@@ -1,8 +1,5 @@
 package bernard.core;
 
-import bernard.exceptions.BernardException;
-import bernard.tasks.Task;
-
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,10 +9,14 @@ import java.util.List;
 import java.io.File;
 import java.util.Scanner;
 
+import bernard.exceptions.BernardException;
+import bernard.tasks.Task;
+
 /**
  * Handles file storage for task list
  */
-public class Storage {
+
+class Storage {
     private final String filePath;
 
     /**
@@ -107,22 +108,22 @@ public class Storage {
         String[] parts = line.split("\\|");
         Task.TaskType type;
         switch (parts[0]) {
-            case "T":
-                type = Task.TaskType.TODO;
-                break;
-            case "D":
-                type = Task.TaskType.DEADLINE;
-                break;
-            case "E":
-                type = Task.TaskType.EVENT;
-                break;
-            default:
-                throw new BernardException("Invalid task type!");
+        case "T":
+            type = Task.TaskType.TODO;
+            break;
+        case "D":
+            type = Task.TaskType.DEADLINE;
+            break;
+        case "E":
+            type = Task.TaskType.EVENT;
+            break;
+        default:
+            throw new BernardException("Invalid task type!");
         }
         boolean isDone = parts[1].equals("X");
         String[] args = Arrays.copyOfRange(parts, 2, parts.length);
         Task task = Task.of(type, args);
-        task.updateDoneStatus(isDone);
+        task.setDoneStatus(isDone);
         return task;
     }
 }

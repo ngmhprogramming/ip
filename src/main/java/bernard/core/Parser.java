@@ -5,7 +5,7 @@ import bernard.exceptions.BernardException;
 /**
  * Handles parsing of user commands for the Bernard Personal Assistant
  */
-public class Parser {
+class Parser {
     private TaskList taskList;
     private Ui ui;
 

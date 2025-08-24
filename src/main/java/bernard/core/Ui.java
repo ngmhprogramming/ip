@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Handles input and output for the Bernard Personal Assistant
  */
-public class Ui {
+class Ui {
     private Scanner scanner;
 
     /**

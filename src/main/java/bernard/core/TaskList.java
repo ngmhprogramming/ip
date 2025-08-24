@@ -1,9 +1,9 @@
 package bernard.core;
 
+import java.util.List;
+
 import bernard.exceptions.BernardException;
 import bernard.tasks.Task;
-
-import java.util.List;
 
 /**
  * Handles tasks for the Bernard Personal Assistant
@@ -93,9 +93,9 @@ public class TaskList {
         if (index >= tasks.size()) {
             throw new BernardException("Task index out of range!");
         }
-        tasks.get(index).updateDoneStatus(true);
-        ui.outputLine("> I've marked the task as done!");
-        ui.outputLine(tasks.get(index).toString());
+        tasks.get(index).setDoneStatus(true);
+        System.out.println("> I've marked the task as done!");
+        System.out.println(tasks.get(index));
     }
 
     /**
@@ -108,9 +108,9 @@ public class TaskList {
         if (index >= tasks.size()) {
             throw new BernardException("Task index out of range!");
         }
-        tasks.get(index).updateDoneStatus(false);
-        ui.outputLine("> I've marked the task as undone!");
-        ui.outputLine(tasks.get(index).toString());
+        tasks.get(index).setDoneStatus(false);
+        System.out.println("> I've marked the task as undone!");
+        System.out.println(tasks.get(index));
     }
 
     /**
