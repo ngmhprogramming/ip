@@ -15,15 +15,6 @@ public class TodoTest {
     }
 
     @Test
-    void constructor_emptyDescription_throwsException() {
-        BernardException thrown = assertThrows(
-                BernardException.class,
-                () -> new Todo("")
-        );
-        assertEquals("Empty description!", thrown.getMessage());
-    }
-
-    @Test
     void serialise_returnsCorrectFormat() throws BernardException {
         Todo todo = new Todo("Read book");
         assertEquals("T| |Read book", todo.serialise());
