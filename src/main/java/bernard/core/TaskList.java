@@ -10,14 +10,17 @@ import java.util.List;
  */
 public class TaskList {
     private List<Task> tasks;
+    private Ui ui;
 
     /**
      * Construct a task list
      *
-     * @param tasks
+     * @param tasks List of tasks to intialise with
+     * @param ui Ui manager to use for output
      */
-    public TaskList(List<Task> tasks) {
+    public TaskList(List<Task> tasks, Ui ui) {
         this.tasks = tasks;
+        this.ui = ui;
     }
 
     /**
@@ -76,8 +79,8 @@ public class TaskList {
         } else {
             throw new BernardException("Not sure what you mean...");
         }
-        System.out.println("> Added task: ");
-        System.out.println(tasks.get(tasks.size() - 1));
+        ui.outputLine("> Added task: ");
+        ui.outputLine(tasks.get(tasks.size() - 1).toString());
     }
 
     /**
@@ -91,8 +94,8 @@ public class TaskList {
             throw new BernardException("Task index out of range!");
         }
         tasks.get(index).updateDoneStatus(true);
-        System.out.println("> I've marked the task as done!");
-        System.out.println(tasks.get(index));
+        ui.outputLine("> I've marked the task as done!");
+        ui.outputLine(tasks.get(index).toString());
     }
 
     /**
@@ -106,8 +109,8 @@ public class TaskList {
             throw new BernardException("Task index out of range!");
         }
         tasks.get(index).updateDoneStatus(false);
-        System.out.println("> I've marked the task as undone!");
-        System.out.println(tasks.get(index));
+        ui.outputLine("> I've marked the task as undone!");
+        ui.outputLine(tasks.get(index).toString());
     }
 
     /**
@@ -120,19 +123,19 @@ public class TaskList {
         if (index >= tasks.size()) {
             throw new BernardException("Task index out of range!");
         }
-        System.out.println("> Removing task: ");
-        System.out.println(tasks.get(index));
+        ui.outputLine("> Removing task: ");
+        ui.outputLine(tasks.get(index).toString());
         tasks.remove(index);
-        System.out.println("I've deleted the task!");
+        ui.outputLine("I've deleted the task!");
     }
 
     /**
      * Print all tasks found in task list
      */
     public void listTasks() {
-        System.out.println("> Task list:");
+        ui.outputLine("> Task list:");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i));
+            ui.outputLine((i + 1) + ". " + tasks.get(i));
         }
     }
 }

@@ -25,7 +25,7 @@ public class Bernard {
         // try to load storage file and parse tasks
         try {
             storage = new Storage(STORAGE_PATH);
-            taskList = new TaskList(storage.load());
+            taskList = new TaskList(storage.load(), ui);
         } catch (BernardException e) {
             ui.outputLine("> ERROR! " + e.getMessage());
             ui.outputLine("Shutting down...");

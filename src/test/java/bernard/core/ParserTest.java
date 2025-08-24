@@ -87,7 +87,7 @@ public class ParserTest {
         String[] lastArgs = null;
 
         TaskListMock() {
-            super(new ArrayList<>());
+            super(new ArrayList<>(), new UiMock());
         }
 
         @Override
