@@ -11,8 +11,10 @@ public class Bernard {
     private static Storage storage;
 
     public static void main(String[] args) {
+        // print Bernard title
         ui.title();
 
+        // try to load storage file and parse tasks
         try {
             storage = new Storage(STORAGE_PATH);
             taskList = new TaskList(storage.load());
@@ -21,20 +23,24 @@ public class Bernard {
             ui.outputLine("Shutting down...");
         }
 
+        // greet the user
         ui.greet();
 
+        // parse user commands
         parser = new Parser(taskList, ui);
         boolean ended = false;
         while (!ended) {
             ended = parser.handleCommand(ui.getUserInput());
         }
 
+        // store edited tasklist
         try {
             taskList.saveTasks(storage);
         } catch (BernardException e) {
             ui.outputLine("> ERROR! " + e.getMessage());
         }
 
+        // shutdown
         ui.bye();
     }
 }

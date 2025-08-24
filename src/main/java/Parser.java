@@ -7,6 +7,7 @@ public class Parser {
         this.ui = ui;
     }
 
+    // parse user command and execute accordingly
     public boolean handleCommand(String command) {
         String[] commandArgs = command.split(" ");
         try {
