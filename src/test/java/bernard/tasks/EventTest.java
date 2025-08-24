@@ -1,9 +1,12 @@
 package bernard.tasks;
 
-import bernard.exceptions.BernardException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import bernard.exceptions.BernardException;
 
 public class EventTest {
 
@@ -30,7 +33,7 @@ public class EventTest {
     void updateDoneStatus_serialise_reflectsStatus() throws BernardException {
         Event e = new Event("Study session", "2019-12-02T18:00", "2019-12-02T20:00");
         assertEquals("E| |Study session|2019-12-02T18:00|2019-12-02T20:00", e.serialise()); // initially not done
-        e.updateDoneStatus(true);
+        e.setDoneStatus(true);
         assertEquals("E|X|Study session|2019-12-02T18:00|2019-12-02T20:00", e.serialise());
     }
 }

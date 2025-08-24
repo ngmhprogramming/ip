@@ -1,14 +1,18 @@
 package bernard.core;
 
-import bernard.exceptions.BernardException;
-import bernard.tasks.Task;
-import bernard.tasks.Todo;
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import bernard.exceptions.BernardException;
+import bernard.tasks.Task;
+import bernard.tasks.Todo;
 
 public class TaskListTest {
 

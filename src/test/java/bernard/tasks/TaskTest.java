@@ -1,8 +1,11 @@
 package bernard.tasks;
 
-import bernard.exceptions.BernardException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import bernard.exceptions.BernardException;
 
 public class TaskTest {
 
@@ -33,15 +36,15 @@ public class TaskTest {
     }
 
     @Test
-    void updateDoneStatus_UpdatesString() throws BernardException {
+    void setDoneStatus_UpdatesString() throws BernardException {
         Task task = new TestTask("Test task");
 
         assertEquals("[ ] Test task", task.toString());
 
-        task.updateDoneStatus(true);
+        task.setDoneStatus(true);
         assertEquals("[X] Test task", task.toString());
 
-        task.updateDoneStatus(false);
+        task.setDoneStatus(false);
         assertEquals("[ ] Test task", task.toString());
     }
 
@@ -51,7 +54,7 @@ public class TaskTest {
 
         assertEquals(" |Serialize me", task.serialise()); // initial not done
 
-        task.updateDoneStatus(true);
+        task.setDoneStatus(true);
         assertEquals("X|Serialize me", task.serialise());
     }
 }

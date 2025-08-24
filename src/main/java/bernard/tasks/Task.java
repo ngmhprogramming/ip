@@ -31,12 +31,12 @@ public abstract class Task {
         throw new BernardException("Invalid task type!");
     }
 
-    public void updateDoneStatus(boolean value) {
+    public void setDoneStatus(boolean value) {
         this.isDone = value;
     }
 
     private String getDoneSymbol() {
-        return (this.isDone ? "X" : " ");
+        return this.isDone ? "X" : " ";
     }
 
     public String serialise() {

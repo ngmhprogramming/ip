@@ -2,7 +2,7 @@ package bernard.core;
 
 import java.util.Scanner;
 
-public class Ui {
+class Ui {
     private Scanner scanner;
 
     public Ui() {
