@@ -87,4 +87,13 @@ public class TaskList {
             System.out.println((i + 1) + ". " + tasks.get(i));
         }
     }
+
+    public void listMatchingTasks(String keyword) {
+        System.out.println("> Matching Tasks:");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).matchesKeyword(keyword)) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
 }

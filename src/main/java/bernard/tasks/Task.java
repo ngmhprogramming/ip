@@ -39,6 +39,16 @@ public abstract class Task {
         return (this.isDone ? "X" : " ");
     }
 
+    /**
+     * Attempts to match keyword as a substring of task description
+     *
+     * @param keyword Keyword to search for
+     * @return Boolena indicating whether a match is found
+     */
+    public boolean matchesKeyword(String keyword) {
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
+    }
+
     public String serialise() {
         return getDoneSymbol() + "|" + this.description;
     }

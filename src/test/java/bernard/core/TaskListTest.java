@@ -87,6 +87,20 @@ public class TaskListTest {
     }
 
     @Test
+    void listMatchingTasks_printsTasks() throws BernardException {
+        var outContent = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(outContent));
+
+        taskList.addTask(new String[]{"todo", "Read", "book"});
+        taskList.markTask(0);
+        taskList.listMatchingTasks("book");
+
+        String output = outContent.toString();
+        assertTrue(output.contains("> Matching Tasks:"));
+        assertTrue(output.contains("1. [T][X] Read book"));
+    }
+
+    @Test
     void saveTasks_callsStorageSave() throws BernardException {
         // Mock Storage using a simple class
         var mockStorage = new StorageMock();

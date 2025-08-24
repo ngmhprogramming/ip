@@ -35,6 +35,12 @@ public class ParserTest {
     }
 
     @Test
+    void handleCommand_find_callsListMatchingTasks() {
+        parser.handleCommand("find me");
+        assertTrue(taskListMock.listMatchingCalled);
+    }
+
+    @Test
     void handleCommand_mark_callsMarkTask() {
         parser.handleCommand("mark 1");
         assertTrue(taskListMock.markCalled);
@@ -78,6 +84,7 @@ public class ParserTest {
     // Mock TaskList class
     static class TaskListMock extends TaskList {
         boolean listCalled = false;
+        boolean listMatchingCalled = false;
         boolean markCalled = false;
         boolean unmarkCalled = false;
         boolean deleteCalled = false;
@@ -93,6 +100,11 @@ public class ParserTest {
         @Override
         public void listTasks() {
             listCalled = true;
+        }
+
+        @Override
+        public void listMatchingTasks(String keyword) {
+            listMatchingCalled = true;
         }
 
         @Override

@@ -49,6 +49,11 @@ public class Parser {
                 } catch (NumberFormatException exception) {
                     throw new BernardException("Invalid task index!");
                 }
+            } else if (commandArgs[0].equals("find")) {
+                if (commandArgs.length == 1) {
+                    throw new BernardException("No keyword specified!");
+                }
+                taskList.listMatchingTasks(commandArgs[1]);
             } else {
                 taskList.addTask(commandArgs);
             }

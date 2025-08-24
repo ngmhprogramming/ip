@@ -54,4 +54,13 @@ public class TaskTest {
         task.updateDoneStatus(true);
         assertEquals("X|Serialize me", task.serialise());
     }
+
+    @Test
+    void matchesKeyword_returnsCorrectly() throws BernardException {
+        Task task = new TestTask("Hello World!");
+        assertTrue(task.matchesKeyword("Hello"));
+        assertTrue(task.matchesKeyword("hello"));
+        assertTrue(task.matchesKeyword("hel"));
+        assertTrue(!task.matchesKeyword("help"));
+    }
 }
