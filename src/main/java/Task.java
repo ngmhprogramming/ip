@@ -35,6 +35,10 @@ public abstract class Task {
         return (this.isDone ? "X" : " ");
     }
 
+    public String serialise() {
+        return getDoneSymbol() + "|" + this.description;
+    }
+
     @Override
     public String toString() {
         return "["+ this.getDoneSymbol() +"] "+ this.description;

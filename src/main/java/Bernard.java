@@ -90,6 +90,15 @@ public class Bernard {
                 "|____/ \\___|_|  |_| |_|\\__,_|_|  \\__,_|";
         System.out.println(logo);
 
+        Storage storage = null;
+        try {
+            storage = new Storage("./data/bernard.txt");
+            tasks = storage.load();
+        } catch (BernardException e) {
+            System.out.println("> ERROR! " + e.getMessage());
+            System.out.println("Shutting down...");
+        }
+
         System.out.println("Hello! I'm Bernard, your helpful companion!");
         System.out.println("How can I help you today?");
 
@@ -136,9 +145,14 @@ public class Bernard {
                 } else {
                     addTask(commandArgs);
                 }
-            } catch (BernardException exception) {
-                System.out.println("> ERROR! " + exception.getMessage());
+            } catch (BernardException e) {
+                System.out.println("> ERROR! " + e.getMessage());
             }
+        }
+        try {
+            storage.save(tasks);
+        } catch (BernardException e) {
+            System.out.println("> ERROR! " + e.getMessage());
         }
         System.out.println("Goodbye! See you again!");
     }
