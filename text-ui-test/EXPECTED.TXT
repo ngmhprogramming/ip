@@ -10,32 +10,32 @@ How can I help you today?
 > Task list:
 1. [T][ ] borrow book
 > Added task: 
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Aug 24 2025, 8:00pm)
 > Task list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
+2. [D][ ] return book (by: Aug 24 2025, 8:00pm)
 > Added task: 
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
 > Task list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] return book (by: Aug 24 2025, 8:00pm)
+3. [E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
 > I've marked the task as done!
-[D][X] return book (by: Sunday)
+[D][X] return book (by: Aug 24 2025, 8:00pm)
 > Task list:
 1. [T][ ] borrow book
-2. [D][X] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [D][X] return book (by: Aug 24 2025, 8:00pm)
+3. [E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
 > I've marked the task as undone!
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Aug 24 2025, 8:00pm)
 > Task list:
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] return book (by: Aug 24 2025, 8:00pm)
+3. [E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
 > Removing task: 
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Aug 24 2025, 8:00pm)
 I've deleted the task!
 > Task list:
 1. [T][ ] borrow book
-2. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [E][ ] project meeting (from: Aug 25 2025, 2:00pm to: Aug 25 2025, 4:00pm)
 Goodbye! See you again!
