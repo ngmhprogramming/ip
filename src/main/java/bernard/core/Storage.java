@@ -1,3 +1,8 @@
+package bernard.core;
+
+import bernard.exceptions.BernardException;
+import bernard.tasks.Task;
+
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;

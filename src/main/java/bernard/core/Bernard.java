@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+package bernard.core;
+
+import bernard.exceptions.BernardException;
 
 public class Bernard {
     private static final String STORAGE_PATH = "./data/bernard.txt";

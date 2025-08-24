@@ -1,3 +1,7 @@
+package bernard.tasks;
+
+import bernard.exceptions.BernardException;
+
 public abstract class Task {
     private String description;
     private boolean isDone;

@@ -9,11 +9,16 @@ if exist ".\data\" (
     del /Q ".\data\*.*"
 )
 
-REM compile the code into the bin folder
-javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
-IF ERRORLEVEL 1 (
-    echo ********** BUILD FAILURE **********
-    exit /b 1
+REM compile all Java files recursively into the bin folder
+@REM REM javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
+
+set SRC_DIR=..\src\main\java
+for /R "%SRC_DIR%" %%f in (*.java) do (
+    javac -cp "%SRC_DIR%" -Xlint:none -d ..\bin "%%f"
+    IF ERRORLEVEL 1 (
+        echo ********** BUILD FAILURE **********
+        exit /b 1
+    )
 )
 REM no error here, errorlevel == 0
 

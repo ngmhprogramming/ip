@@ -1,3 +1,7 @@
+package bernard.core;
+
+import bernard.exceptions.BernardException;
+
 public class Parser {
     private TaskList taskList;
     private Ui ui;

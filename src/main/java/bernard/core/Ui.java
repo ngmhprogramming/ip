@@ -1,3 +1,5 @@
+package bernard.core;
+
 import java.util.Scanner;
 
 public class Ui {

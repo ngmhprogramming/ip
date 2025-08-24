@@ -1,23 +1,23 @@
-import java.time.LocalDate;
+package bernard.tasks;
+
+import bernard.exceptions.BernardException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
+public class Deadline extends Task {
     private static final DateTimeFormatter[] FORMATTERS = new DateTimeFormatter[]{
             DateTimeFormatter.ISO_LOCAL_DATE_TIME,         // e.g. 2019-12-02T18:00
             DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm") // e.g. 2019-12-02 1800
     };
 
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private LocalDateTime deadline;
 
-    public Event(String description, String from, String to) throws BernardException {
+    public Deadline(String description, String deadline) throws BernardException {
         super(description);
-
         try {
-            this.from = parseDateTime(from);
-            this.to = parseDateTime(to);
+            this.deadline = parseDateTime(deadline);
         } catch (DateTimeParseException e) {
             throw new BernardException("Invalid datetime format! Use yyyy-MM-dd HHmm, e.g., 2019-12-02 1800");
         }
@@ -36,12 +36,12 @@ public class Event extends Task {
 
     @Override
     public String serialise() {
-        return "E|" + super.serialise() + "|" + this.from + "|" + this.to;
+        return "D|" + super.serialise() + "|" + this.deadline;
     }
 
     @Override
     public String toString() {
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
-        return "[E]" + super.toString() + " (from: " + this.from.format(outputFormatter) + " to: " + this.to.format(outputFormatter) + ")";
+        return "[D]" + super.toString() + " (by: " + this.deadline.format(outputFormatter) + ")";
     }
 }

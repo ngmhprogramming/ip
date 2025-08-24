@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package bernard.core;
+
+import bernard.exceptions.BernardException;
+import bernard.tasks.Task;
+
 import java.util.List;
 
 public class TaskList {
