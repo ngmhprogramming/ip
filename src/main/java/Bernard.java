@@ -5,34 +5,25 @@ import java.util.Scanner;
 public class Bernard {
     private static Scanner sc = new Scanner(System.in);
     private static TaskList taskList;
-
-    private static String getUserInput() {
-        return sc.nextLine();
-    }
+    private static Ui ui = new Ui();
 
     public static void main(String[] args) {
-        String logo = " ____                                _ \n" +
-                "| __ )  ___ _ __ _ __   __ _ _ __ __| |\n" +
-                "|  _ \\ / _ \\ '__| '_ \\ / _` | '__/ _` |\n" +
-                "| |_) |  __/ |  | | | | (_| | | | (_| |\n" +
-                "|____/ \\___|_|  |_| |_|\\__,_|_|  \\__,_|";
-        System.out.println(logo);
+        ui.title();
 
         Storage storage = null;
         try {
             storage = new Storage("./data/bernard.txt");
             taskList = new TaskList(storage.load());
         } catch (BernardException e) {
-            System.out.println("> ERROR! " + e.getMessage());
-            System.out.println("Shutting down...");
+            ui.outputLine("> ERROR! " + e.getMessage());
+            ui.outputLine("Shutting down...");
         }
 
-        System.out.println("Hello! I'm Bernard, your helpful companion!");
-        System.out.println("How can I help you today?");
+        ui.greet();
 
         boolean ended = false;
         while (!ended) {
-            String command = getUserInput();
+            String command = ui.getUserInput();
             String[] commandArgs = command.split(" ");
             try {
                 if (commandArgs[0].equals("bye")) {
@@ -74,14 +65,15 @@ public class Bernard {
                     taskList.addTask(commandArgs);
                 }
             } catch (BernardException e) {
-                System.out.println("> ERROR! " + e.getMessage());
+                ui.outputLine("> ERROR! " + e.getMessage());
             }
         }
         try {
             taskList.saveTasks(storage);
         } catch (BernardException e) {
-            System.out.println("> ERROR! " + e.getMessage());
+            ui.outputLine("> ERROR! " + e.getMessage());
         }
-        System.out.println("Goodbye! See you again!");
+
+        ui.bye();
     }
 }
