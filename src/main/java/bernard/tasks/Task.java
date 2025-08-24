@@ -70,6 +70,16 @@ public abstract class Task {
     }
 
     /**
+     * Attempts to match keyword as a substring of task description
+     *
+     * @param keyword Keyword to search for
+     * @return Boolena indicating whether a match is found
+     */
+    public boolean matchesKeyword(String keyword) {
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
+    }
+
+    /**
      * Serialise a task for file output
      *
      * @return The serialised form of the task

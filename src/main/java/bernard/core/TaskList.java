@@ -1,5 +1,6 @@
 package bernard.core;
 
+import java.util.Arrays;
 import java.util.List;
 
 import bernard.exceptions.BernardException;
@@ -41,6 +42,9 @@ public class TaskList {
      * @return List of strings split into arguments for task creation
      */
     private String[] extractTaskArgs(String[] taskArgs, String[] delimiters) {
+        if (delimiters.length == 0) {
+            return new String[]{ String.join(" ", Arrays.copyOfRange(taskArgs, 1, taskArgs.length)) };
+        }
         String[] output = new String[delimiters.length + 1];
         for (int i = 0; i < output.length; i++) {
             output[i] = "";
@@ -51,7 +55,7 @@ public class TaskList {
                 index++;
                 continue;
             }
-            if (output[index] != "") {
+            if (!output[index].equals("")) {
                 output[index] += " ";
             }
             output[index] += taskArgs[i] + "";
@@ -136,6 +140,15 @@ public class TaskList {
         ui.outputLine("> Task list:");
         for (int i = 0; i < tasks.size(); i++) {
             ui.outputLine((i + 1) + ". " + tasks.get(i));
+        }
+    }
+
+    public void listMatchingTasks(String keyword) {
+        System.out.println("> Matching Tasks:");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).matchesKeyword(keyword)) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
         }
     }
 }

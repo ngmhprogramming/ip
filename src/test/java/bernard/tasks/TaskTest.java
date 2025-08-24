@@ -2,6 +2,7 @@ package bernard.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,5 +57,14 @@ public class TaskTest {
 
         task.setDoneStatus(true);
         assertEquals("X|Serialize me", task.serialise());
+    }
+
+    @Test
+    void matchesKeyword_returnsCorrectly() throws BernardException {
+        Task task = new TestTask("Hello World!");
+        assertTrue(task.matchesKeyword("Hello"));
+        assertTrue(task.matchesKeyword("hello"));
+        assertTrue(task.matchesKeyword("hel"));
+        assertTrue(!task.matchesKeyword("help"));
     }
 }

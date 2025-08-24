@@ -27,7 +27,11 @@ class Parser {
      * @return Boolean indicating whether command is terminal
      */
     public boolean handleCommand(String command) {
-        String[] commandArgs = command.split(" ");
+        // skip empty command
+        if (command.isEmpty()) {
+            return false;
+        }
+        String[] commandArgs = command.split("\\s+");
         try {
             if (commandArgs[0].equals("bye")) {
                 return true;
@@ -63,6 +67,12 @@ class Parser {
                 } catch (NumberFormatException exception) {
                     throw new BernardException("Invalid task index!");
                 }
+            } else if (commandArgs[0].equals("find")) {
+                if (commandArgs.length == 1) {
+                    throw new BernardException("No keyword specified!");
+                }
+                String keyword = String.join(" ", java.util.Arrays.copyOfRange(commandArgs, 1, commandArgs.length)).trim();
+                taskList.listMatchingTasks(keyword);
             } else {
                 taskList.addTask(commandArgs);
             }
