@@ -41,7 +41,7 @@ public class TaskList {
      * @param delimiters List of strings to split by to get arguments
      * @return List of strings split into arguments for task creation
      */
-    private String[] extractTaskArgs(String[] taskArgs, String[] delimiters) {
+    private String[] extractTaskArgs(String[] taskArgs, String... delimiters) {
         if (delimiters.length == 0) {
             return new String[]{ String.join(" ", Arrays.copyOfRange(taskArgs, 1, taskArgs.length)) };
         }
@@ -72,13 +72,13 @@ public class TaskList {
     public void addTask(String[] taskArgs) throws BernardException {
         String[] parsedArgs;
         if (taskArgs[0].equals("todo")) {
-            parsedArgs = extractTaskArgs(taskArgs, new String[]{});
+            parsedArgs = extractTaskArgs(taskArgs);
             tasks.add(Task.of(Task.TaskType.TODO, parsedArgs));
         } else if (taskArgs[0].equals("deadline")) {
-            parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/by" });
+            parsedArgs = extractTaskArgs(taskArgs, "/by");
             tasks.add(Task.of(Task.TaskType.DEADLINE, parsedArgs));
         } else if (taskArgs[0].equals("event")) {
-            parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/from", "/to" });
+            parsedArgs = extractTaskArgs(taskArgs, "/from", "/to");
             tasks.add(Task.of(Task.TaskType.EVENT, parsedArgs));
         } else {
             throw new BernardException("Not sure what you mean...");
