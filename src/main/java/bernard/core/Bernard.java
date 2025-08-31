@@ -5,13 +5,20 @@ import bernard.exceptions.BernardException;
 /**
  * The Bernard Personal Assistant
  */
-class Bernard {
+public class Bernard {
     private static final String STORAGE_PATH = "./data/bernard.txt";
 
     private static TaskList taskList;
     private static Ui ui = new Ui();
     private static Parser parser;
     private static Storage storage;
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
 
     /**
      * Runs the Bernard Personal Assistant
