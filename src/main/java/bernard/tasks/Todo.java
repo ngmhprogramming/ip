@@ -2,6 +2,9 @@ package bernard.tasks;
 
 import bernard.exceptions.BernardException;
 
+/**
+ * Todo Task
+ */
 public class Todo extends Task {
     /**
      * Constructs a todo task

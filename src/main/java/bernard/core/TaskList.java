@@ -69,7 +69,7 @@ public class TaskList {
      * @param taskArgs Arguments to create task
      * @throws BernardException If unable to create task from arguments
      */
-    public void addTask(String[] taskArgs) throws BernardException{
+    public void addTask(String[] taskArgs) throws BernardException {
         String[] parsedArgs;
         if (taskArgs[0].equals("todo")) {
             parsedArgs = extractTaskArgs(taskArgs, new String[]{});
@@ -77,7 +77,7 @@ public class TaskList {
         } else if (taskArgs[0].equals("deadline")) {
             parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/by" });
             tasks.add(Task.of(Task.TaskType.DEADLINE, parsedArgs));
-        } else if (taskArgs[0].equals("event")){
+        } else if (taskArgs[0].equals("event")) {
             parsedArgs = extractTaskArgs(taskArgs, new String[]{ "/from", "/to" });
             tasks.add(Task.of(Task.TaskType.EVENT, parsedArgs));
         } else {
@@ -143,6 +143,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Print all tasks found in task list matching a keyword
+     *
+     * @param keyword Keyword to be matched
+     */
     public void listMatchingTasks(String keyword) {
         System.out.println("> Matching Tasks:");
         for (int i = 0; i < tasks.size(); i++) {

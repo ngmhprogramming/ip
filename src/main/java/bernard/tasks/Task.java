@@ -95,6 +95,6 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "["+ this.getDoneSymbol() +"] "+ this.description;
+        return "[" + this.getDoneSymbol() + "] " + this.description;
     }
 }

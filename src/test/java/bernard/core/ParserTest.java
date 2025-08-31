@@ -5,13 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bernard.exceptions.BernardException;
-import bernard.tasks.Task;
 
 public class ParserTest {
     private Parser parser;
@@ -51,7 +49,7 @@ public class ParserTest {
     }
 
     @Test
-    void handleCommand_mark_invalidIndex_showsError() {
+    void handleCommand_markInvalidIndex_showsError() {
         parser.handleCommand("mark abc");
         assertTrue(uiMock.output.contains("> ERROR! Invalid task index!"));
     }
@@ -78,7 +76,7 @@ public class ParserTest {
     }
 
     @Test
-    void handleCommand_addTask_exception_showsError() {
+    void handleCommand_addTask_exceptionShowsError() {
         taskListMock.shouldThrow = true;
         parser.handleCommand("todo ");
         assertTrue(uiMock.output.contains("> ERROR! Not sure what you mean..."));
@@ -112,28 +110,36 @@ public class ParserTest {
 
         @Override
         public void markTask(int index) throws BernardException {
-            if (shouldThrow) throw new BernardException("Test exception");
+            if (shouldThrow) {
+                throw new BernardException("Test exception");
+            }
             markCalled = true;
             lastIndex = index;
         }
 
         @Override
         public void unmarkTask(int index) throws BernardException {
-            if (shouldThrow) throw new BernardException("Test exception");
+            if (shouldThrow) {
+                throw new BernardException("Test exception");
+            }
             unmarkCalled = true;
             lastIndex = index;
         }
 
         @Override
         public void deleteTask(int index) throws BernardException {
-            if (shouldThrow) throw new BernardException("Test exception");
+            if (shouldThrow) {
+                throw new BernardException("Test exception");
+            }
             deleteCalled = true;
             lastIndex = index;
         }
 
         @Override
         public void addTask(String[] taskArgs) throws BernardException {
-            if (shouldThrow) throw new BernardException("Not sure what you mean...");
+            if (shouldThrow) {
+                throw new BernardException("Not sure what you mean...");
+            }
             addCalled = true;
             lastArgs = taskArgs;
         }

@@ -13,10 +13,7 @@ public class BernardExceptionTest {
 
     @Test
     void methodThatThrows_exceptionThrown() {
-        BernardException e = assertThrows(
-                BernardException.class,
-                () -> methodThatThrows()
-        );
+        BernardException e = assertThrows(BernardException.class, () -> methodThatThrows());
 
         assertEquals("Something went wrong", e.getMessage());
     }
