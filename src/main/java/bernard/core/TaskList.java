@@ -98,8 +98,8 @@ public class TaskList {
             throw new BernardException("Task index out of range!");
         }
         tasks.get(index).setDoneStatus(true);
-        System.out.println("> I've marked the task as done!");
-        System.out.println(tasks.get(index));
+        ui.outputLine("> I've marked the task as done!");
+        ui.outputLine(tasks.get(index).toString());
     }
 
     /**
@@ -113,8 +113,8 @@ public class TaskList {
             throw new BernardException("Task index out of range!");
         }
         tasks.get(index).setDoneStatus(false);
-        System.out.println("> I've marked the task as undone!");
-        System.out.println(tasks.get(index));
+        ui.outputLine("> I've marked the task as undone!");
+        ui.outputLine(tasks.get(index).toString());
     }
 
     /**
@@ -149,10 +149,10 @@ public class TaskList {
      * @param keyword Keyword to be matched
      */
     public void listMatchingTasks(String keyword) {
-        System.out.println("> Matching Tasks:");
+        ui.outputLine("> Matching Tasks:");
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).matchesKeyword(keyword)) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+                ui.outputLine((i + 1) + ". " + tasks.get(i));
             }
         }
     }
