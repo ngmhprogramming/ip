@@ -59,4 +59,9 @@ class Ui {
     public void outputLine(String line) {
         System.out.println(line);
     }
+
+    /**
+     * Reset output buffer
+     */
+    public void resetOutput() {}
 }

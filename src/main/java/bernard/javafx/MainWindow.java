@@ -50,5 +50,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getBernardDialog(response, bernardImage)
         );
         userInput.clear();
+
+        // Close the window if the response is the goodbye message
+        if (response.equals("Goodbye! See you again!")) {
+            javafx.stage.Stage stage = (javafx.stage.Stage) userInput.getScene().getWindow();
+            stage.close();
+        }
     }
 }
