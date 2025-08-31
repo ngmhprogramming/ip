@@ -29,15 +29,12 @@ public class TaskTest {
 
     @Test
     void constructor_emptyDescription_throwsException() {
-        BernardException thrown = assertThrows(
-                BernardException.class,
-                () -> new TestTask("")
-        );
+        BernardException thrown = assertThrows(BernardException.class, () -> new TestTask(""));
         assertEquals("Empty description!", thrown.getMessage());
     }
 
     @Test
-    void setDoneStatus_UpdatesString() throws BernardException {
+    void setDoneStatus_updatesString() throws BernardException {
         Task task = new TestTask("Test task");
 
         assertEquals("[ ] Test task", task.toString());

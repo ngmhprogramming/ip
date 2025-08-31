@@ -6,13 +6,16 @@ import java.time.format.DateTimeParseException;
 
 import bernard.exceptions.BernardException;
 
+/**
+ * Event task
+ */
 public class Event extends Task {
     /**
      * Formatters to try for parsing datetime arguments
      */
     private static final DateTimeFormatter[] FORMATTERS = new DateTimeFormatter[]{
-            DateTimeFormatter.ISO_LOCAL_DATE_TIME,         // e.g. 2019-12-02T18:00
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm") // e.g. 2019-12-02 1800
+        DateTimeFormatter.ISO_LOCAL_DATE_TIME,         // e.g. 2019-12-02T18:00
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm") // e.g. 2019-12-02 1800
     };
 
     private LocalDateTime from;
@@ -73,6 +76,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
-        return "[E]" + super.toString() + " (from: " + this.from.format(outputFormatter) + " to: " + this.to.format(outputFormatter) + ")";
+        return "[E]" + super.toString() + " (from: " + this.from.format(outputFormatter)
+                + " to: " + this.to.format(outputFormatter) + ")";
     }
 }

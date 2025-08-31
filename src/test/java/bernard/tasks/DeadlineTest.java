@@ -11,19 +11,19 @@ import bernard.exceptions.BernardException;
 public class DeadlineTest {
 
     @Test
-    void constructor_ISOFormat_correctToString() throws BernardException {
+    void constructor_isoFormat_correctToString() throws BernardException {
         Deadline d = new Deadline("Finish homework", "2019-12-02T18:00");
         assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00pm)", d.toString());
     }
 
     @Test
-    void constructor_CustomFormat_correctToString() throws BernardException {
+    void constructor_customFormat_correctToString() throws BernardException {
         Deadline d = new Deadline("Finish homework", "2019-12-02 1800");
         assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00pm)", d.toString());
     }
 
     @Test
-    void constructor_InvalidFormat_exceptionThrown() {
+    void constructor_invalidFormat_exceptionThrown() {
         Exception e = assertThrows(BernardException.class, () ->
                 new Deadline("Test", "12/02/2019 6pm"));
         assertTrue(e.getMessage().contains("Invalid datetime format"));

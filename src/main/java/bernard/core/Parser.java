@@ -71,7 +71,8 @@ class Parser {
                 if (commandArgs.length == 1) {
                     throw new BernardException("No keyword specified!");
                 }
-                String keyword = String.join(" ", java.util.Arrays.copyOfRange(commandArgs, 1, commandArgs.length)).trim();
+                String keyword = String.join(" ",
+                        java.util.Arrays.copyOfRange(commandArgs, 1, commandArgs.length)).trim();
                 taskList.listMatchingTasks(keyword);
             } else {
                 taskList.addTask(commandArgs);

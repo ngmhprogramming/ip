@@ -3,7 +3,7 @@ package bernard.exceptions;
 /**
  * Custom Exception class for the Bernard Personal Assistant
  */
-public class BernardException extends Exception{
+public class BernardException extends Exception {
     /**
      * Constructs a BernardException
      *
