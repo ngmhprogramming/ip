@@ -1,5 +1,7 @@
 package bernard.tasks;
 
+import java.util.Arrays;
+
 import bernard.exceptions.BernardException;
 
 /**
@@ -72,13 +74,14 @@ public abstract class Task {
     }
 
     /**
-     * Attempts to match keyword as a substring of task description
+     * Attempts to match keywords as a substring of task description
      *
-     * @param keyword Keyword to search for
-     * @return Boolena indicating whether a match is found
+     * @param keywords Keywords to search for
+     * @return Boolean indicating whether a match is found
      */
-    public boolean matchesKeyword(String keyword) {
-        return this.description.toLowerCase().contains(keyword.toLowerCase());
+    public boolean matchesKeyword(String... keywords) {
+        return Arrays.stream(keywords)
+                .anyMatch(keyword -> this.description.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     /**

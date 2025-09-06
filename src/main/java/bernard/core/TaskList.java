@@ -154,12 +154,12 @@ public class TaskList {
     /**
      * Print all tasks found in task list matching a keyword
      *
-     * @param keyword Keyword to be matched
+     * @param keywords Keywords to be matched
      */
-    public void listMatchingTasks(String keyword) {
+    public void listMatchingTasks(String keywords) {
         ui.outputLine("> Matching Tasks:");
         IntStream.range(0, tasks.size())
-                .filter(i -> tasks.get(i).matchesKeyword(keyword))
+                .filter(i -> tasks.get(i).matchesKeyword(keywords.split("\\|")))
                 .forEach(i -> ui.outputLine((i + 1) + ". " + tasks.get(i)));
     }
 }
