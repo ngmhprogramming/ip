@@ -2,6 +2,7 @@ package bernard.core;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import bernard.exceptions.BernardException;
 import bernard.tasks.Task;
@@ -138,9 +139,8 @@ public class TaskList {
      */
     public void listTasks() {
         ui.outputLine("> Task list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            ui.outputLine((i + 1) + ". " + tasks.get(i));
-        }
+        IntStream.range(0, tasks.size())
+                .forEach(i -> ui.outputLine((i + 1) + ". " + tasks.get(i)));
     }
 
     /**
@@ -150,10 +150,8 @@ public class TaskList {
      */
     public void listMatchingTasks(String keyword) {
         ui.outputLine("> Matching Tasks:");
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).matchesKeyword(keyword)) {
-                ui.outputLine((i + 1) + ". " + tasks.get(i));
-            }
-        }
+        IntStream.range(0, tasks.size())
+                .filter(i -> tasks.get(i).matchesKeyword(keyword))
+                .forEach(i -> ui.outputLine((i + 1) + ". " + tasks.get(i)));
     }
 }
