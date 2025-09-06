@@ -14,6 +14,11 @@ public class Bernard {
     private Parser parser;
     private Storage storage;
 
+    /**
+     * Initialises a Bernard instance
+     *
+     * @param ui Ui object for output display
+     */
     public Bernard(Ui ui) {
         assert ui != null;
         this.ui = ui;

@@ -14,7 +14,7 @@ public class Deadline extends Task {
      * Formatters to try for parsing datetime arguments
      */
     private static final DateTimeFormatter[] FORMATTERS = new DateTimeFormatter[]{
-        DateTimeFormatter.ISO_LOCAL_DATE_TIME,         // e.g. 2019-12-02T18:00
+        DateTimeFormatter.ISO_LOCAL_DATE_TIME, // e.g. 2019-12-02T18:00
         DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm") // e.g. 2019-12-02 1800
     };
 
