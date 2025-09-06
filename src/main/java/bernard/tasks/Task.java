@@ -41,14 +41,16 @@ public abstract class Task {
      * @throws BernardException If task type specified was invalid
      */
     public static Task of(TaskType taskType, String[] taskArgs) throws BernardException {
-        if (taskType == TaskType.TODO) {
+        switch (taskType) {
+        case TODO:
             return new Todo(taskArgs[0]);
-        } else if (taskType == TaskType.DEADLINE) {
+        case DEADLINE:
             return new Deadline(taskArgs[0], taskArgs[1]);
-        } else if (taskType == TaskType.EVENT) {
+        case EVENT:
             return new Event(taskArgs[0], taskArgs[1], taskArgs[2]);
+        default:
+            throw new BernardException("Invalid task type!");
         }
-        throw new BernardException("Invalid task type!");
     }
 
     /**
