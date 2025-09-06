@@ -7,6 +7,7 @@ import bernard.exceptions.BernardException;
  */
 public class Bernard {
     private static final String STORAGE_PATH = "./data/bernard.txt";
+    private static final String GOODBYE_MESSAGE = "Goodbye! See you again!";
 
     private TaskList taskList;
     private Ui ui;
@@ -21,7 +22,7 @@ public class Bernard {
             taskList = new TaskList(storage.load(), ui);
             parser = new Parser(taskList, ui);
         } catch (BernardException e) {
-            ui.outputLine("> ERROR! " + e.getMessage());
+            ui.outputErrorMessage(e);
             ui.outputLine("Shutting down...");
         }
     }
@@ -40,11 +41,11 @@ public class Bernard {
         try {
             taskList.saveTasks(storage);
         } catch (BernardException e) {
-            ui.outputLine("> ERROR! " + e.getMessage());
+            ui.outputErrorMessage(e);
         }
 
         if (isDone) {
-            return "Goodbye! See you again!";
+            return GOODBYE_MESSAGE;
         }
 
         String output = ui.toString();
@@ -71,7 +72,7 @@ public class Bernard {
         boolean isDone = false;
         while (!isDone) {
             String output = bernard.getResponse(ui.getUserInput());
-            if (output.equals("Goodbye! See you again!")) {
+            if (output.equals(GOODBYE_MESSAGE)) {
                 isDone = true;
             }
         }

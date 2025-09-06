@@ -78,7 +78,7 @@ class Parser {
                 taskList.addTask(commandArgs);
             }
         } catch (BernardException e) {
-            ui.outputLine("> ERROR! " + e.getMessage());
+            ui.outputErrorMessage(e);
         }
         return false;
     }

@@ -60,6 +60,10 @@ class Ui {
         System.out.println(line);
     }
 
+    public void outputErrorMessage(Exception e) {
+        outputLine("> ERROR! " + e.getMessage());
+    }
+
     /**
      * Reset output buffer
      */
