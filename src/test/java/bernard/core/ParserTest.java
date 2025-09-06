@@ -32,70 +32,102 @@ public class ParserTest {
     @Test
     void handleCommand_list_callsListTasks() {
         parser.handleCommand("list");
-        assertTrue(taskListMock.listCalled);
+        assertTrue(taskListMock.getListCalled());
     }
 
     @Test
     void handleCommand_find_callsListMatchingTasks() {
         parser.handleCommand("find me");
-        assertTrue(taskListMock.listMatchingCalled);
+        assertTrue(taskListMock.getListMatchingCalled());
     }
 
     @Test
     void handleCommand_mark_callsMarkTask() {
         parser.handleCommand("mark 1");
-        assertTrue(taskListMock.markCalled);
-        assertEquals(0, taskListMock.lastIndex);
+        assertTrue(taskListMock.getMarkCalled());
+        assertEquals(0, taskListMock.getLastIndex());
     }
 
     @Test
     void handleCommand_markInvalidIndex_showsError() {
         parser.handleCommand("mark abc");
-        assertTrue(uiMock.output.contains("> ERROR! Invalid task index!"));
+        assertTrue(uiMock.getOutput().contains("> ERROR! Invalid task index!"));
     }
 
     @Test
     void handleCommand_unmark_callsUnmarkTask() {
         parser.handleCommand("unmark 2");
-        assertTrue(taskListMock.unmarkCalled);
-        assertEquals(1, taskListMock.lastIndex);
+        assertTrue(taskListMock.getUnmarkCalled());
+        assertEquals(1, taskListMock.getLastIndex());
     }
 
     @Test
     void handleCommand_delete_callsDeleteTask() {
         parser.handleCommand("delete 3");
-        assertTrue(taskListMock.deleteCalled);
-        assertEquals(2, taskListMock.lastIndex);
+        assertTrue(taskListMock.getDeleteCalled());
+        assertEquals(2, taskListMock.getLastIndex());
     }
 
     @Test
     void handleCommand_addTask_callsAddTask() {
         parser.handleCommand("todo Read book");
-        assertTrue(taskListMock.addCalled);
-        assertArrayEquals(new String[]{"todo", "Read", "book"}, taskListMock.lastArgs);
+        assertTrue(taskListMock.getAddCalled());
+        assertArrayEquals(new String[]{"todo", "Read", "book"}, taskListMock.getLastArgs());
     }
 
     @Test
     void handleCommand_addTask_exceptionShowsError() {
         taskListMock.shouldThrow = true;
         parser.handleCommand("todo ");
-        assertTrue(uiMock.output.contains("> ERROR! Not sure what you mean..."));
+        assertTrue(uiMock.getOutput().contains("> ERROR! Not sure what you mean..."));
     }
 
     // Mock TaskList class
     static class TaskListMock extends TaskList {
-        boolean listCalled = false;
-        boolean listMatchingCalled = false;
-        boolean markCalled = false;
-        boolean unmarkCalled = false;
-        boolean deleteCalled = false;
-        boolean addCalled = false;
-        boolean shouldThrow = false;
-        int lastIndex = -1;
-        String[] lastArgs = null;
+        private boolean listCalled = false;
+        private boolean listMatchingCalled = false;
+        private boolean markCalled = false;
+        private boolean unmarkCalled = false;
+        private boolean deleteCalled = false;
+        private boolean addCalled = false;
+        private boolean shouldThrow = false;
+        private int lastIndex = -1;
+        private String[] lastArgs = null;
 
         TaskListMock() {
             super(new ArrayList<>(), new UiMock());
+        }
+
+        public boolean getListCalled() {
+            return listCalled;
+        }
+
+        public boolean getListMatchingCalled() {
+            return listMatchingCalled;
+        }
+
+        public boolean getMarkCalled() {
+            return markCalled;
+        }
+
+        public boolean getUnmarkCalled() {
+            return unmarkCalled;
+        }
+
+        public boolean getDeleteCalled() {
+            return deleteCalled;
+        }
+
+        public boolean getAddCalled() {
+            return addCalled;
+        }
+
+        private int getLastIndex() {
+            return lastIndex;
+        }
+
+        private String[] getLastArgs() {
+            return lastArgs;
         }
 
         @Override
@@ -147,7 +179,11 @@ public class ParserTest {
 
     // Mock Ui class
     static class UiMock extends Ui {
-        String output = "";
+        private String output = "";
+
+        public String getOutput() {
+            return output;
+        }
 
         @Override
         public void outputLine(String line) {

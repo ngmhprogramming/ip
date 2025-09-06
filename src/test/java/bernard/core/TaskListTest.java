@@ -35,7 +35,7 @@ public class TaskListTest {
         assertEquals(1, tasks.size());
         assertTrue(tasks.get(0) instanceof Todo);
         assertEquals("[T][ ] Read book", tasks.get(0).toString());
-        assertTrue(uiMock.output.contains("> Added task:"));
+        assertTrue(uiMock.getOutput().contains("> Added task:"));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class TaskListTest {
 
         taskList.deleteTask(0);
         assertEquals(0, tasks.size());
-        assertTrue(uiMock.output.contains("> Removing task:"));
-        assertTrue(uiMock.output.contains("I've deleted the task!"));
+        assertTrue(uiMock.getOutput().contains("> Removing task:"));
+        assertTrue(uiMock.getOutput().contains("I've deleted the task!"));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class TaskListTest {
         taskList.markTask(0);
 
         taskList.listTasks();
-        assertTrue(uiMock.output.contains("> Task list:"));
-        assertTrue(uiMock.output.contains("1. [T][X] Read book"));
+        assertTrue(uiMock.getOutput().contains("> Task list:"));
+        assertTrue(uiMock.getOutput().contains("1. [T][X] Read book"));
     }
 
     @Test
@@ -95,8 +95,8 @@ public class TaskListTest {
         taskList.markTask(0);
         taskList.listMatchingTasks("book");
 
-        assertTrue(uiMock.output.contains("> Matching Tasks:"));
-        assertTrue(uiMock.output.contains("1. [T][X] Read book"));
+        assertTrue(uiMock.getOutput().contains("> Matching Tasks:"));
+        assertTrue(uiMock.getOutput().contains("1. [T][X] Read book"));
     }
 
     @Test
@@ -106,18 +106,26 @@ public class TaskListTest {
         taskList.markTask(0);
 
         taskList.saveTasks(storageMock);
-        assertTrue(storageMock.savedCalled);
-        assertEquals(1, storageMock.savedTasks.size());
-        assertEquals("[T][X] Read book", storageMock.savedTasks.get(0).toString());
+        assertTrue(storageMock.getSavedCalled());
+        assertEquals(1, storageMock.getSavedTasks().size());
+        assertEquals("[T][X] Read book", storageMock.getSavedTasks().get(0).toString());
     }
 
     // Storage mock class
     static class StorageMock extends Storage {
-        boolean savedCalled = false;
-        List<Task> savedTasks = null;
+        private boolean savedCalled = false;
+        private List<Task> savedTasks = null;
 
         StorageMock() throws BernardException {
             super(System.getProperty("java.io.tmpdir") + "/dummy.txt");
+        }
+
+        public boolean getSavedCalled() {
+            return savedCalled;
+        }
+
+        public List<Task> getSavedTasks() {
+            return savedTasks;
         }
 
         @Override
@@ -129,7 +137,11 @@ public class TaskListTest {
 
     // Mock Ui class
     static class UiMock extends Ui {
-        String output = "";
+        private String output = "";
+
+        public String getOutput() {
+            return output;
+        }
 
         @Override
         public void outputLine(String line) {
