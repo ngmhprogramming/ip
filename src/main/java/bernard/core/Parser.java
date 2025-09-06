@@ -16,6 +16,8 @@ class Parser {
      * @param ui Ui used by commands
      */
     public Parser(TaskList taskList, Ui ui) {
+        assert taskList != null;
+        assert ui != null;
         this.taskList = taskList;
         this.ui = ui;
     }
@@ -27,6 +29,7 @@ class Parser {
      * @return Boolean indicating whether command is terminal
      */
     public boolean handleCommand(String command) {
+        assert command != null;
         // skip empty command
         if (command.isEmpty()) {
             return false;
