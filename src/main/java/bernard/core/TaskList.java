@@ -21,6 +21,9 @@ public class TaskList {
      * @param ui Ui manager to use for output
      */
     public TaskList(List<Task> tasks, Ui ui) {
+        assert tasks != null;
+        assert ui != null;
+
         this.tasks = tasks;
         this.ui = ui;
     }
@@ -71,6 +74,8 @@ public class TaskList {
      * @throws BernardException If unable to create task from arguments
      */
     public void addTask(String[] taskArgs) throws BernardException {
+        assert taskArgs.length > 0;
+
         String[] parsedArgs;
         if (taskArgs[0].equals("todo")) {
             parsedArgs = extractTaskArgs(taskArgs);

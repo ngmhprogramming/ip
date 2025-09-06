@@ -14,6 +14,7 @@ public class Bernard {
     private Storage storage;
 
     public Bernard(Ui ui) {
+        assert ui != null;
         this.ui = ui;
 
         try {
@@ -71,6 +72,7 @@ public class Bernard {
         boolean isDone = false;
         while (!isDone) {
             String output = bernard.getResponse(ui.getUserInput());
+            assert output != null;
             if (output.equals("Goodbye! See you again!")) {
                 isDone = true;
             }
