@@ -13,13 +13,13 @@ public class EventTest {
     @Test
     void constructor_isoFormat_correctToString() throws BernardException {
         Event e = new Event("Study session", "2019-12-02T18:00", "2019-12-02T20:00");
-        assertEquals("[E][ ] Study session (from: Dec 2 2019, 6:00pm to: Dec 2 2019, 8:00pm)", e.toString());
+        assertEquals("[E][ ] Study session (from: Dec 2 2019, 6:00PM to: Dec 2 2019, 8:00PM)", e.toString());
     }
 
     @Test
     void constructor_customFormat_correctToString() throws BernardException {
         Event e = new Event("Study session", "2019-12-02 1800", "2019-12-02 2000");
-        assertEquals("[E][ ] Study session (from: Dec 2 2019, 6:00pm to: Dec 2 2019, 8:00pm)", e.toString());
+        assertEquals("[E][ ] Study session (from: Dec 2 2019, 6:00PM to: Dec 2 2019, 8:00PM)", e.toString());
     }
 
     @Test

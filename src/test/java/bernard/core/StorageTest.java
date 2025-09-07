@@ -64,7 +64,7 @@ public class StorageTest {
         List<Task> loadedTasks = storage.load();
         assertEquals(1, loadedTasks.size());
         assertTrue(loadedTasks.get(0) instanceof Deadline);
-        assertEquals("[D][ ] Return book (by: Dec 2 2019, 6:00pm)", loadedTasks.get(0).toString());
+        assertEquals("[D][ ] Return book (by: Dec 2 2019, 6:00PM)", loadedTasks.get(0).toString());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class StorageTest {
         List<Task> loadedTasks = storage.load();
         assertEquals(1, loadedTasks.size());
         assertTrue(loadedTasks.get(0) instanceof Event);
-        assertEquals("[E][ ] Study (from: Dec 2 2019, 6:00pm to: Dec 2 2019, 8:00pm)", loadedTasks.get(0).toString());
+        assertEquals("[E][ ] Study (from: Dec 2 2019, 6:00PM to: Dec 2 2019, 8:00PM)", loadedTasks.get(0).toString());
     }
 
     @Test

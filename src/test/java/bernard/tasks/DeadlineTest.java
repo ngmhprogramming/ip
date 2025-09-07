@@ -13,13 +13,13 @@ public class DeadlineTest {
     @Test
     void constructor_isoFormat_correctToString() throws BernardException {
         Deadline d = new Deadline("Finish homework", "2019-12-02T18:00");
-        assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00pm)", d.toString());
+        assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00PM)", d.toString());
     }
 
     @Test
     void constructor_customFormat_correctToString() throws BernardException {
         Deadline d = new Deadline("Finish homework", "2019-12-02 1800");
-        assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00pm)", d.toString());
+        assertEquals("[D][ ] Finish homework (by: Dec 2 2019, 6:00PM)", d.toString());
     }
 
     @Test
