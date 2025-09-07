@@ -3,6 +3,7 @@ package bernard.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 import bernard.exceptions.BernardException;
 
@@ -71,7 +72,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma", Locale.ENGLISH);
         return "[D]" + super.toString() + " (by: " + this.deadline.format(outputFormatter) + ")";
     }
 }
