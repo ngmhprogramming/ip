@@ -24,59 +24,59 @@ public class ParserTest {
     }
 
     @Test
-    void handleCommand_bye_returnsTrue() {
+    void handleCommand_bye_returnsTrue() throws BernardException {
         boolean result = parser.handleCommand("bye");
         assertTrue(result);
     }
 
     @Test
-    void handleCommand_list_callsListTasks() {
+    void handleCommand_list_callsListTasks() throws BernardException {
         parser.handleCommand("list");
         assertTrue(taskListMock.getListCalled());
     }
 
     @Test
-    void handleCommand_find_callsListMatchingTasks() {
+    void handleCommand_find_callsListMatchingTasks() throws BernardException {
         parser.handleCommand("find me");
         assertTrue(taskListMock.getListMatchingCalled());
     }
 
     @Test
-    void handleCommand_mark_callsMarkTask() {
+    void handleCommand_mark_callsMarkTask() throws BernardException {
         parser.handleCommand("mark 1");
         assertTrue(taskListMock.getMarkCalled());
         assertEquals(0, taskListMock.getLastIndex());
     }
 
     @Test
-    void handleCommand_markInvalidIndex_showsError() {
+    void handleCommand_markInvalidIndex_showsError() throws BernardException {
         parser.handleCommand("mark abc");
         assertTrue(uiMock.getOutput().contains("> ERROR! Invalid task index!"));
     }
 
     @Test
-    void handleCommand_unmark_callsUnmarkTask() {
+    void handleCommand_unmark_callsUnmarkTask() throws BernardException {
         parser.handleCommand("unmark 2");
         assertTrue(taskListMock.getUnmarkCalled());
         assertEquals(1, taskListMock.getLastIndex());
     }
 
     @Test
-    void handleCommand_delete_callsDeleteTask() {
+    void handleCommand_delete_callsDeleteTask() throws BernardException {
         parser.handleCommand("delete 3");
         assertTrue(taskListMock.getDeleteCalled());
         assertEquals(2, taskListMock.getLastIndex());
     }
 
     @Test
-    void handleCommand_addTask_callsAddTask() {
+    void handleCommand_addTask_callsAddTask() throws BernardException {
         parser.handleCommand("todo Read book");
         assertTrue(taskListMock.getAddCalled());
         assertArrayEquals(new String[]{"todo", "Read", "book"}, taskListMock.getLastArgs());
     }
 
     @Test
-    void handleCommand_addTask_exceptionShowsError() {
+    void handleCommand_addTask_exceptionShowsError() throws BernardException {
         taskListMock.shouldThrow = true;
         parser.handleCommand("todo ");
         assertTrue(uiMock.getOutput().contains("> ERROR! Not sure what you mean..."));

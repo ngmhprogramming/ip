@@ -92,11 +92,37 @@ public class TaskListTest {
     @Test
     void listMatchingTasks_printsTasks() throws BernardException {
         taskList.addTask(new String[]{"todo", "Read", "book"});
+        taskList.addTask(new String[]{"todo", "Read", "things"});
         taskList.markTask(0);
+        uiMock.clearOutput();
+
         taskList.listMatchingTasks("book");
 
         assertTrue(uiMock.getOutput().contains("> Matching Tasks:"));
         assertTrue(uiMock.getOutput().contains("1. [T][X] Read book"));
+    }
+
+    // Method written by ChatGPT, supplied with listMatchingTasks_printsTasks() test
+    // from above as well as implementation of TaskList.listMatchingTasks()
+    @Test
+    void listMatchingTasks_multipleKeywords_printsTasks() throws BernardException {
+        // Arrange
+        taskList.addTask(new String[]{"todo", "Read", "book"});
+        taskList.addTask(new String[]{"todo", "Write", "report"});
+        taskList.addTask(new String[]{"todo", "Play", "football"});
+        taskList.markTask(1); // mark "Write report" as done
+        uiMock.clearOutput();
+
+        // Act
+        taskList.listMatchingTasks("book|report");
+
+        // Assert
+        String output = uiMock.getOutput();
+        System.out.println(output);
+        assertTrue(output.contains("> Matching Tasks:"), "Should print the matching tasks header");
+        assertTrue(output.contains("1. [T][ ] Read book"), "Should list 'Read book'");
+        assertTrue(output.contains("2. [T][X] Write report"), "Should list 'Write report'");
+        assertTrue(!output.contains("Play football"), "Non-matching tasks should not be listed");
     }
 
     @Test
@@ -141,6 +167,10 @@ public class TaskListTest {
 
         public String getOutput() {
             return output;
+        }
+
+        public void clearOutput() {
+            output = "";
         }
 
         @Override
