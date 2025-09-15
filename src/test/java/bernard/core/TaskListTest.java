@@ -111,6 +111,7 @@ public class TaskListTest {
         taskList.addTask(new String[]{"todo", "Write", "report"});
         taskList.addTask(new String[]{"todo", "Play", "football"});
         taskList.markTask(1); // mark "Write report" as done
+
         uiMock.clearOutput();
 
         // Act
@@ -118,7 +119,6 @@ public class TaskListTest {
 
         // Assert
         String output = uiMock.getOutput();
-        System.out.println(output);
         assertTrue(output.contains("> Matching Tasks:"), "Should print the matching tasks header");
         assertTrue(output.contains("1. [T][ ] Read book"), "Should list 'Read book'");
         assertTrue(output.contains("2. [T][X] Write report"), "Should list 'Write report'");
