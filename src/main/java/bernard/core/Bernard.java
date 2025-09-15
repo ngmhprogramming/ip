@@ -41,7 +41,13 @@ public class Bernard {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        boolean isDone = parser.handleCommand(input);
+        boolean isDone = false;
+
+        try {
+            isDone = parser.handleCommand(input);
+        } catch (BernardException e) {
+            ui.outputErrorMessage(e);
+        }
 
         // store edited tasklist
         try {

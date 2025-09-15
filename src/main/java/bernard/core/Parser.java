@@ -28,11 +28,11 @@ class Parser {
      * @param command Command sent by user
      * @return Boolean indicating whether command is terminal
      */
-    public boolean handleCommand(String command) {
+    public boolean handleCommand(String command) throws BernardException {
         assert command != null;
         // skip empty command
         if (command.isEmpty()) {
-            return false;
+            throw new BernardException("You ain't say nothing bro");
         }
         String[] commandArgs = command.split("\\s+");
         try {
