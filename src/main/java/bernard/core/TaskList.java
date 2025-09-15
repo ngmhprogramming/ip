@@ -56,9 +56,13 @@ public class TaskList {
         int index = 0;
         for (int i = 1; i < taskArgs.length; i++) {
             boolean inRange = index < delimiters.length;
-            boolean matchesDelimiter = taskArgs[i].equals(delimiters[index]);
+            boolean matchesDelimiter = false;
 
-            if (inRange && matchesDelimiter) {
+            if (inRange) {
+                matchesDelimiter = taskArgs[i].equals(delimiters[index]);
+            }
+
+            if (matchesDelimiter) {
                 index++;
                 continue;
             }
